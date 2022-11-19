@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    background-color: #F5F5F6;
+    font-size: 11px;
+    height: 50px;
+    margin-bottom: 55px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60vw;
+    font-weight: bold;
+    color: #959BA4;
+}
+
+.menu-button {
+    display: none;
+}
+
+/* .nav {
+    display: none;
+    color: #FFFFFF;
+    background-color: #959BA4;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+} */
+
+.menu p:hover {
+    color: #000000;
+    cursor: pointer;
+    transition: 1000ms;
+}
+
+button {
+    width: 7vw;
+    min-width: 58px;
+    height: 35px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    font-family: Roboto;
+    font-weight: bold;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.main {
+    margin: auto;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.containers {
+    width: 56vw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container {
+    min-width: 265px;
+}
+
+.container p {
+    margin: 8px 0 11px 0;
+    color: #9F9F9F;
+}
+
+.first {
+    margin-right: 65px;
+}
+
+.currencies {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: #E5E5E5;
+    border: 1px solid #E5E5E5;
+    border-radius: 3px;
+    border-collapse: collapse;
+}
+
+td {
+    width: 6vw;
+    min-width: 65px;
+    text-align: center;
+    margin: 0;
+    padding: 5px 0px;
+    border: 1px solid #E5E5E5;
+    /* border-radius: 3px; */
+}
+
+td:hover {
+    cursor: pointer;
+    background-color: #833AE0;
+    color: #FFFFFF;
+    transition: 1000ms;
+}
+
+.block {
+    border: 1px solid #E5E5E5;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.block p {
+    margin: 0;
+}
+
+input {
+    border: none;
+    width: 18vw;
+    min-width: 215px;
+    font-size: 36px;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+@media (max-width: 800px) {
+    .main {
+        padding: 0 0 20px 8px;
+    }
+    .menu-button {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .menu-button:hover {
+        transition: 500ms;
+        transform: rotate(90deg);
+    }
+}
