@@ -39,17 +39,21 @@ img:hover {
     display: none;
 }
 
-/* .nav {
+.nav {
     display: none;
+    font-weight: bold;
+    font-size: 13px;
     color: #FFFFFF;
     background-color: #959BA4;
-    width: 150px;
-    display: flex;
+    width: 27vw;
     flex-direction: column;
     padding: 10px;
-} */
+    position: absolute;
+    top: 50px;
+    right: 0;
+}
 
-.menu p:hover {
+.menu p:hover, .nav p:hover {
     color: #000000;
     cursor: pointer;
     transition: 1000ms;
@@ -155,16 +159,12 @@ input:focus {
     .main {
         padding: 0 0 20px 8px;
     }
+    
     .menu-button {
         display: block;
     }
 
     .menu {
         display: none;
-    }
-
-    .menu-button:hover {
-        transition: 500ms;
-        transform: rotate(90deg);
     }
 }
