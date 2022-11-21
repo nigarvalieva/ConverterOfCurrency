@@ -25,9 +25,8 @@ fetch('https://api.exchangerate.host/latest?base=RUB&symbols=USD')
     .then(data => {
         document.querySelector('.currencies-first p').textContent = `1 RUB = ${data.rates.USD} USD`
         document.querySelector('.currencies-first input').addEventListener('input', () => {
-            document.querySelector('.currencies-first input').value = document.querySelector('.currencies-first input').value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
             if (document.querySelector('.currencies-first input').value != 0) {
-                document.querySelector('.currencies-second input').value = ((+(document.querySelector('.currencies-first input').value) * +(data.rates.USD))).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1') 
+                document.querySelector('.currencies-second input').value = ((+(document.querySelector('.currencies-first input').value) * +(data.rates.USD))).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
             } else {
                 document.querySelector('.currencies-second input').value = ''
             }
