@@ -32,16 +32,15 @@ function changeCurrencies(arr) {
     })
 };
 changeCurrencies(tabOne); changeCurrencies(tabTwo);
-const input1 = document.querySelector('.currencies-first input'), input2 = document.querySelector('.currencies-second input')
-
-window.addEventListener('click', () => {
+let input1 = document.querySelector('.currencies-first input'), input2 = document.querySelector('.currencies-second input')
+window.addEventListener('click', () =>{
     fetch(`https://api.exchangerate.host/latest?base=${valueFirst}&symbols=${valueSecond}`)
         .then(res => res.json()).then(data => {
             document.querySelector('.currencies-first p').textContent = `1 ${valueFirst} = ${data.rates[valueSecond]} ${valueSecond}`
             input1.addEventListener('input', () => {
                 input1.value = input1.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
-                if (input1.value != 0) {
-                    input2.value = ((input1.value * Number(data.rates[valueSecond]))).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
+                if (input1.value.length > 0){
+                    input2.value = (Number((input1.value.split(' ').join('')) * Number(data.rates[valueSecond]))).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
                 } else { input2.value = '' }
             })
         })
@@ -50,9 +49,10 @@ window.addEventListener('click', () => {
             document.querySelector('.currencies-second p').textContent = `1 ${valueSecond} = ${data.rates[valueFirst]} ${valueFirst}`
             input2.addEventListener('input', () => {
                 input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
-                if (document.querySelector('.currencies-second input').value != 0) {
-                    input1.value = ((input2.value * Number(data.rates[valueFirst]))).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
+                if (input1.value.length > 0) {
+                    input1.value = (Number(input2.value.split(' ').join('')) * Number(data.rates[valueFirst])).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
                 } else { input1.value = '' }
             })
         })
-})
+    })
+    // .replace(/(\w{3})$/, '$1 ')
