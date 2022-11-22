@@ -126,9 +126,6 @@ td {
 
 td:hover {
     cursor: pointer;
-    color: #FFFFFF;
-    background-color: #833AE0;
-    transition: 1000ms;
 }
 
 .rub-tab-one, .usd-tab-two {
