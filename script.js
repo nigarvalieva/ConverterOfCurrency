@@ -27,9 +27,15 @@ let input1 = document.querySelector('.currencies-first input'), input2 = documen
 window.addEventListener('click', () => {
     fetch(`https://api.exchangerate.host/latest?base=${valueFirst}&symbols=${valueSecond}`)
         .then(res => res.json()).then(data => {
+
             document.querySelector('.currencies-first p').textContent = `1 ${valueFirst} = ${data.rates[valueSecond]} ${valueSecond}`
+            fetch(`https://api.exchangerate.host/latest?base=${valueSecond}&symbols=${valueFirst}`).then(r => r.json()).then(d => {
+                input1.value = input2.value * Number(d.rates[valueFirst])
+            })
+
             input1.addEventListener('input', () => {
-                input1.value = input1.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".").replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
+                input1.value = input1.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
+                .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
                 if(input1.value.length == '2' && input1.value[0] == '0' && input1.value[1] != '.')
                 input1.value = input1.value.slice(1);
                 if (input1.value.length > 0) {
@@ -39,7 +45,8 @@ window.addEventListener('click', () => {
         .then(res => res.json()).then(data => {
             document.querySelector('.currencies-second p').textContent = `1 ${valueSecond} = ${data.rates[valueFirst]} ${valueFirst}`
             input2.addEventListener('input', () => { 
-                input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(/[^0-9,.]/g, '').replace(",.", ".").split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
+                input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
+                .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
                 if(input2.value.length == '2' && input2.value[0] == '0' && input2.value[1] != '.')
                 input2.value = input2.value.slice(1);
                 if (input2.value.length > 0) {
