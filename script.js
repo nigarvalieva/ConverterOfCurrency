@@ -38,7 +38,11 @@ tabOne.forEach((item) => {
             .then(r => r.json()).then(d => {
                 input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
                     .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
-                input1.value = (input2.value.split(' ').join('') * Number(d.rates[valueFirst])).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
+                if (input1.value.length == '2' && input1.value[0] == '0' && input1.value[1] != '.')
+                    input1.value = input1.value.slice(1);
+                if (input1.value.length > 0) {
+                    input1.value = (input2.value.split(' ').join('') * Number(d.rates[valueFirst])).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
+                } else { input2.value = '' }
             })
     })
 })
@@ -50,7 +54,11 @@ tabTwo.forEach((item) => {
             .then(r => r.json()).then(d => {
                 input1.value = input1.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
                     .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
-                input2.value = (input1.value.split(' ').join('') * Number(d.rates[valueSecond])).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
+                if (input2.value.length == '2' && input2.value[0] == '0' && input2.value[1] != '.')
+                    input2.value = input2.value.slice(1);
+                if (input2.value.length > 0) {
+                    input2.value = (input1.value.split(' ').join('') * Number(d.rates[valueSecond])).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
+                } else { input1.value = '' }
             })
     })
 })
