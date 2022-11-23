@@ -27,12 +27,9 @@ let input1 = document.querySelector('.currencies-first input'), input2 = documen
 window.addEventListener('click', () => {
     fetch(`https://api.exchangerate.host/latest?base=${valueFirst}&symbols=${valueSecond}`)
         .then(res => res.json()).then(data => {
-
             document.querySelector('.currencies-first p').textContent = `1 ${valueFirst} = ${data.rates[valueSecond]} ${valueSecond}`
             fetch(`https://api.exchangerate.host/latest?base=${valueSecond}&symbols=${valueFirst}`).then(r => r.json()).then(d => {
-                input1.value = input2.value * Number(d.rates[valueFirst])
-            })
-
+                input1.value = input2.value * Number(d.rates[valueFirst])})
             input1.addEventListener('input', () => {
                 input1.value = input1.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
                 .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
@@ -43,12 +40,8 @@ window.addEventListener('click', () => {
                 } else { input2.value = '' } }) })
     fetch(`https://api.exchangerate.host/latest?base=${valueSecond}&symbols=${valueFirst}`)
         .then(res => res.json()).then(data => {
-            
-            // document.querySelector('.currencies-first p').textContent = `1 ${valueFirst} = ${data.rates[valueSecond]} ${valueSecond}`
             fetch(`https://api.exchangerate.host/latest?base=${valueFirst}&symbols=${valueSecond}`).then(r => r.json()).then(d => {
-                input2.value = input1.value * Number(d.rates[valueSecond])
-            })
-
+                input2.value = input1.value * Number(d.rates[valueSecond])})
             document.querySelector('.currencies-second p').textContent = `1 ${valueSecond} = ${data.rates[valueFirst]} ${valueFirst}`
             input2.addEventListener('input', () => { 
                 input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
