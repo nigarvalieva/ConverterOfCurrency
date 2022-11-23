@@ -83,7 +83,7 @@ h1 {
 }
 
 .containers {
-    width: 56vw;
+    width: 70vw;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -100,7 +100,7 @@ h1 {
 }
 
 .first {
-    margin-right: 65px;
+    margin-right: 15px;
 }
 
 .currencies {
@@ -160,7 +160,7 @@ input:focus {
 
 @media (max-width: 800px) {
     .main {
-        padding: 55px 0 20px 8px;
+        padding: 55px 8px 20px 8px;
     }
     
     .menu-button {
