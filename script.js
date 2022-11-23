@@ -43,6 +43,12 @@ window.addEventListener('click', () => {
                 } else { input2.value = '' } }) })
     fetch(`https://api.exchangerate.host/latest?base=${valueSecond}&symbols=${valueFirst}`)
         .then(res => res.json()).then(data => {
+            
+            // document.querySelector('.currencies-first p').textContent = `1 ${valueFirst} = ${data.rates[valueSecond]} ${valueSecond}`
+            fetch(`https://api.exchangerate.host/latest?base=${valueFirst}&symbols=${valueSecond}`).then(r => r.json()).then(d => {
+                input2.value = input1.value * Number(d.rates[valueSecond])
+            })
+
             document.querySelector('.currencies-second p').textContent = `1 ${valueSecond} = ${data.rates[valueFirst]} ${valueFirst}`
             input2.addEventListener('input', () => { 
                 input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
