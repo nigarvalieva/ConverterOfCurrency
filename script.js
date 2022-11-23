@@ -36,7 +36,9 @@ tabOne.forEach((item) => {
         valueFirst = e.target.textContent;
         fetch(`https://api.exchangerate.host/latest?base=${valueSecond}&symbols=${valueFirst}`)
             .then(r => r.json()).then(d => {
-                input1.value = input2.value * Number(d.rates[valueFirst])
+                input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
+                    .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
+                input1.value = (input2.value.split(' ').join('') * Number(d.rates[valueFirst])).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
             })
     })
 })
@@ -46,7 +48,9 @@ tabTwo.forEach((item) => {
         valueSecond = e.target.textContent;
         fetch(`https://api.exchangerate.host/latest?base=${valueFirst}&symbols=${valueSecond}`)
             .then(r => r.json()).then(d => {
-                input2.value = input1.value * Number(d.rates[valueSecond])
+                input1.value = input1.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
+                    .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
+                input2.value = (input1.value.split(' ').join('') * Number(d.rates[valueSecond])).toLocaleString(undefined, { minimumFractionDigits: 4 }).replace(",", ".").replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
             })
     })
 })
