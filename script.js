@@ -37,7 +37,7 @@ tabOne.forEach((item) => {
         fetch(`https://api.exchangerate.host/latest?base=${valueSecond}&symbols=${valueFirst}`)
             .then(r => r.json()).then(d => {
                 input2.value = input2.value.replace(",", ".").replace("..", ".").replace(".,", ".").replace(",.", ".")
-                    .replace(/[^0-9,.]/g, '').split(' ').join('').replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ').replace(/(\.\d+)\s(\d+)/g, '$1$2')
+                    .replace(/[^0-9,.]/g, '').split(' ').join('')
                 input2.value = view(input2.value)
                 if (input1.value.length == '2' && input1.value[0] == '0' && input1.value[1] != '.')
                     input1.value = input1.value.slice(1);
