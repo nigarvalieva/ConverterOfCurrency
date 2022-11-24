@@ -171,4 +171,29 @@ input:focus {
         display: none;
     }
 
+    h1{
+        text-align: center;
+    }
+
+    .first{
+        margin: 0;
+    }
+
+    .currencies{
+        width: 265px;
+    }
+
+    .block{
+        width: 234px;
+    }
+
+    .containers {
+        width: 270px;
+        margin: auto;
+        flex-direction: column;
+    }
+
+    .container {
+        width: 265px;
+    }
 }
